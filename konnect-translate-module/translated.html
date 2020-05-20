@@ -1,0 +1,100 @@
+<html>
+<head>
+<script src='https://meet.softofficepro.com/external_api.js'></script>
+<body style="background-color:black;">
+</head>
+<style>
+#header {
+    width: 100%;
+    background-color: black;
+    height: 0%;
+}
+
+#container {
+    width: 100%;
+    background-color: #ffcc33;
+    margin: auto;
+}
+#mainmeeting-container {
+    width: 100%;
+    float: left;
+    height: 100%;
+        background-color: black;
+}
+#training-container {
+    width: 0%;
+    float: left;
+    height: 100%;
+    background-color: black;
+#clear {
+    clear: both;
+}
+</style>
+<body>
+<h1></h1>
+<div id="header"></div>
+<div id="container">
+    <div id="mainmeeting-container"></div>
+    <div id="sub-container"></div>
+    <div id="clear"></div>
+</div>
+
+
+<script>
+var container = document.querySelector('#mainmeeting-container');
+var translation = document.querySelector('#sub-container');
+var api = null;
+
+function codeAddress() {
+  var domain = "meet.softofficepro.com";
+  var optionsmain = {
+      "roomName": "modulus_room1",
+      "parentNode": container,
+      "width": "100%",
+      "height": "100%",
+      configOverwrite: {
+      startWithAudioMuted: true,
+      startWithVideoMuted: true,
+      startSilent: true
+      },
+      userInfo: {
+        displayName: 'Listener'
+      }
+  };
+  var optionstranslation = {
+      "roomName": "translation_modulus1",
+      "parentNode": translation,
+      "width": "100%",
+      "height": "100%",
+      configOverwrite: {
+      startWithVideoMuted: true
+      },
+      interfaceConfigOverwrite: { filmStripOnly: true,
+        DEFAULT_BACKGROUND: '#bbbbbb',
+        TOOLBAR_BUTTONS: [
+        'microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
+        'fodeviceselection', 'hangup', 'profile', 'info', 'settings',
+        'videoquality', 'filmstrip', 'feedback', 'stats', 'shortcuts',
+        'tileview', 'download', 'help',
+        'e2ee'
+        ],
+      },
+
+      configOverwrite: {
+      startWithAudioMuted: false,
+      },
+
+      userInfo: {
+        email: 'info@softofficepro.com',
+        displayName: 'Listener'
+      }
+  };
+
+  api = new JitsiMeetExternalAPI(domain, optionsmain);
+  api = new JitsiMeetExternalAPI(domain, optionstranslation);
+}
+window.onload = codeAddress;
+
+</script>
+</body>
+</html>
